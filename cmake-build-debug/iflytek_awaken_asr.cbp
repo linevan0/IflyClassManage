@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="iflytek_awaken_asr"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/lllya/iflytek_awaken_asr/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/lllya/iflytek_awaken_asr/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/lllya/iflytek_awaken_asr/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="iflytek_awaken_asr">
+				<Option output="/home/lllya/iflytek_awaken_asr/bin/iflytek_awaken_asr" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/lllya/iflytek_awaken_asr/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/asr_record"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/awaken"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/msc"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/tts"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/iat"/>
+					<Add directory="/usr/include/libxml2"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/libs/x64"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 iflytek_awaken_asr"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="iflytek_awaken_asr/fast">
+				<Option output="/home/lllya/iflytek_awaken_asr/bin/iflytek_awaken_asr" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/lllya/iflytek_awaken_asr/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/asr_record"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/awaken"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/msc"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/tts"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/include/iat"/>
+					<Add directory="/usr/include/libxml2"/>
+					<Add directory="/home/lllya/iflytek_awaken_asr/libs/x64"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 iflytek_awaken_asr/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/lllya/iflytek_awaken_asr/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/asr_record/asr_record.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/asr_record/formats.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/asr_record/linuxrec.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/asr_record/play_audio.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/asr_record/speech_recognizer.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/awaken/awaken.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/cJSON.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/iat/iat.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/msc/msp_cmn.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/msc/msp_errors.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/msc/msp_types.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/msc/qise.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/msc/qisr.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/msc/qivw.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/msc/qtts.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/myhttp.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/myjson.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/include/tts/tts.h">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/awaken.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/cJSON.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/iat.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/linuxrec.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/main.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/myhttp.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/myjson.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/myurl.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/myxml.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/play_audio.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/speech_recognizer.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/src/tts.c">
+			<Option target="iflytek_awaken_asr"/>
+		</Unit>
+		<Unit filename="/home/lllya/iflytek_awaken_asr/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

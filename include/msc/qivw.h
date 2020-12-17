@@ -21,9 +21,6 @@ typedef int (MSPAPI *Proc_QIVWAudioWrite)(const char *sessionID, const void *aud
 int MSPAPI QIVWRegisterNotify(const char *sessionID, ivw_ntf_handler msgProcCb, void *userData);
 typedef int (MSPAPI *Proc_QIVWRegisterNotify)(const char *sessionID, ivw_ntf_handler msgProcCb, void *userData);
 
-int MSPAPI QIVWResMerge(const char *srcPath, const char *destPath, const char *params);
-typedef int (MSPAPI *Proc_QIVWResMerge)(const char *srcPath, const char *destPath, const char *params);
-
 int MSPAPI QIVWGetResInfo(const char *resPath, char *resInfo, unsigned int *infoLen, const char *params);
 typedef int (MSPAPI *Proc_QIVWGetResInfo)(const char *resPath, char *resInfo, unsigned int *infoLen, const char *params);
 

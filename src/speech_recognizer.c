@@ -1,24 +1,17 @@
-/*
-@file
-@brief a simple demo to recognize speech from microphone
 
-@author		taozhang9
-@date		2016/05/27
-*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-
-#include "../include/msc/qisr.h"
-#include "../include/msc/msp_cmn.h"
-#include "../include/msc/msp_errors.h"
-
-#include "../include/asr_record/linuxrec.h"
-#include "../include/asr_record/speech_recognizer.h"
-
-
+#include "speech_recognizer.h"
+#include "qisr.h"
+#include "msp_cmn.h"
+#include "msp_errors.h"
+#include "linuxrec.h"
+#include "tts.h"
+#include "myjson.h"
+#include "myhttp.h"
 #define SR_DBGON 1
 #if SR_DBGON == 1
 #	define sr_dbg printf
@@ -83,9 +76,16 @@ static void end_sr_on_vad(struct speech_rec *sr)
 	sr->rec_stat = MSP_AUDIO_SAMPLE_CONTINUE;
 	while(sr->rec_stat != MSP_REC_STATUS_COMPLETE ){
 		rslt = QISRGetResult(sr->session_id, &sr->rec_stat, 0, &errcode);
-		if (rslt && sr->notif.on_result)
-			sr->notif.on_result(rslt, sr->rec_stat == MSP_REC_STATUS_COMPLETE ? 1 : 0);
+		if (rslt && sr->notif.on_result) {
+            sr->notif.on_result(rslt, sr->rec_stat == MSP_REC_STATUS_COMPLETE ? 1 : 0);
 
+//            upload_rawxml(rslt);
+//            printf("write xml over\n");
+//            printf("xml=%s\n",rslt);
+//            printf("rawtext=%s\n",GetRawtext());
+
+
+		}
 		Sleep(100); /* for cpu occupy, should sleep here */
 	}
 
@@ -243,7 +243,7 @@ int sr_start_listening(struct speech_rec *sr)
 		return -E_SR_ALREADY;
 	}
 
-	session_id = QISRSessionBegin(NULL, sr->session_begin_params, &errcode); //ÌýÐŽ²»ÐèÒªÓï·š£¬µÚÒ»žö²ÎÊýÎªNULL
+	session_id = QISRSessionBegin(NULL, sr->session_begin_params, &errcode); //��д����Ҫ�﷨����һ������ΪNULL
 	if (MSP_SUCCESS != errcode)
 	{
 		sr_dbg("\nQISRSessionBegin failed! error code:%d\n", errcode);
@@ -316,8 +316,17 @@ int sr_stop_listening(struct speech_rec *sr)
 			end_sr_on_error(sr, ret);
 			return ret;
 		}
-		if (NULL != rslt && sr->notif.on_result)
-			sr->notif.on_result(rslt, sr->rec_stat == MSP_REC_STATUS_COMPLETE ? 1 : 0);
+		if (NULL != rslt && sr->notif.on_result) {
+            sr->notif.on_result(rslt, sr->rec_stat == MSP_REC_STATUS_COMPLETE ? 1 : 0);
+
+            /*
+            upload_rawxml(rslt);
+            printf("write xml over\n");
+            printf("xml=%s\n",rslt);
+            printf("rawtext=%s\n",GetRawtext());
+            my_tts(GetRawtext());
+             */
+        }
 		Sleep(100);
 	}
 
@@ -342,16 +351,25 @@ int sr_write_audio_data(struct speech_rec *sr, char *data, unsigned int len)
 	}
 	sr->audio_status = MSP_AUDIO_SAMPLE_CONTINUE;
 
-	if (MSP_REC_STATUS_SUCCESS == sr->rec_stat) { //ÒÑŸ­ÓÐ²¿·ÖÌýÐŽœá¹û
+	if (MSP_REC_STATUS_SUCCESS == sr->rec_stat) {
 		rslt = QISRGetResult(sr->session_id, &sr->rec_stat, 0, &ret);
-		if (MSP_SUCCESS != ret)	{
+        if (MSP_SUCCESS != ret)	{
 			sr_dbg("\nQISRGetResult failed! error code: %d\n", ret);
 			end_sr_on_error(sr, ret);
 			return ret;
 		}
-		if (NULL != rslt && sr->notif.on_result)
-			sr->notif.on_result(rslt, sr->rec_stat == MSP_REC_STATUS_COMPLETE ? 1 : 0);
+		if (NULL != rslt && sr->notif.on_result) {
+            sr->notif.on_result(rslt, sr->rec_stat == MSP_REC_STATUS_COMPLETE ? 1 : 0);
+            /*
+            upload_rawxml(rslt);
+            printf("write xml over\n");
+            printf("xml=%s\n",rslt);
+            printf("rawtext=%s\n",GetRawtext());
+            my_tts(GetRawtext());
+            */
+		}
 	}
+
 
 	if (MSP_EP_AFTER_SPEECH == sr->ep_stat)
 		end_sr_on_vad(sr);

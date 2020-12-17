@@ -1,0 +1,9 @@
+POST http://210.34.58.15:8000/api/fzuVoiceRecord
+Content-Type: application/json
+
+{  "time": "2020-12-06T15:47:00",
+  "raspild": "1",
+  "content": "Test"
+}
+
+###

@@ -11,7 +11,7 @@
 #include "../include/asr_record/formats.h"
 #include "../include/asr_record/linuxrec.h"
 #include "../include/asr_record/speech_recognizer.h"
-
+#include "string.h"
 
 
 #define E_SR_NOACTIVEDEVICE		1
@@ -37,8 +37,8 @@ static int record_state = MSP_AUDIO_SAMPLE_CONTINUE;
 struct recorder *recorder;
 BOOL g_is_awaken_succeed = TRUE;
 
-
-
+//const char *awaken_params = "ivw_threshold=0:1700,sst=wakeup,ivw_res_path =fo|/home/lllya/iflytek_awaken_asr/res/ivw/wakeupresource.jet";
+char awaken_params[100]="";//todo
 static void sleep_ms(size_t ms)
 {
 	usleep(ms*1000);
@@ -104,7 +104,7 @@ int cb_ivw_msg_proc( const char *sessionID, int msg, int param1, int param2, con
 
 
 
-void run_ivw(const char *grammar_list ,  const char* session_begin_params)
+void run_ivw(const char *grammar_list )
 {
 	const char *session_id = NULL;
 	int err_code = MSP_SUCCESS;
@@ -116,7 +116,7 @@ void run_ivw(const char *grammar_list ,  const char* session_begin_params)
 
 
 //start QIVW
-	session_id=QIVWSessionBegin(grammar_list, session_begin_params, &err_code);
+	session_id=QIVWSessionBegin(grammar_list, awaken_params, &err_code);
 	if (err_code != MSP_SUCCESS)
 	{
 		printf("QIVWSessionBegin failed! error code:%d\n",err_code);
@@ -176,3 +176,8 @@ exit:
 	}
 }
 
+void GetAWAKENParams(const char* string)
+{
+    strcpy(awaken_params,string);
+    printf("awaken_params=%s\n",awaken_params);
+}

@@ -32,15 +32,6 @@ extern BOOL g_is_order_publiced;
 
 
 #define concat(first, second) first second
-#define PACKAGE_PATH         "/home/night_fury/catkin_ws/src/awaken_asr/"
-
-#define ASR_RES_PATH_HEAD    concat("fo|", PACKAGE_PATH)
-#define ASR_RES_PATH         concat(ASR_RES_PATH_HEAD, "res/asr/common.jet")//"fo|/home/night_fury/catkin_ws/src/awaken_asr/res/asr/common.jet"; //离线语法识别资源路径
-#define GRM_BUILD_PATH       concat(PACKAGE_PATH, "res/asr/GrmBuilld")//"/home/night_fury/catkin_ws/src/awaken_asr/res/asr/GrmBuilld"; //构建离线语法识别网络生成数据保存路径
-#define GRM_FILE             concat(PACKAGE_PATH, "res/asr/call.bnf")//"/home/night_fury/catkin_ws/src/awaken_asr/res/asr/call.bnf"; //构建离线识别语法网络所用的语法文件
-
-
-
 
 #ifdef __cplusplus
 extern "C" {

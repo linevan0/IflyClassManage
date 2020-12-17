@@ -1,0 +1,9 @@
+<config>
+    <raspiId>1</raspiId>>
+    <awaken_params>ivw_threshold=0:1700,sst=wakeup,ivw_res_path =fo|/home/lllya/IflyClassManage/res/ivw/wakeupresource.jet</awaken_params>
+    <iat_params>sub = iat, domain = iat, language = zh_cn, accent = mandarin, sample_rate = 16000, result_type = plain, result_encoding = utf8</iat_params>
+    <tts_params>voice_name = xiaoyan, text_encoding = utf8, sample_rate = 16000, speed = 50, volume = 50, pitch = 50, rdn = 2</tts_params>
+    <lgi_param>appid = 5fa8dbbe,engine_start = ivw,ivw_res_path =fo|/home/lllya/IflyClassManage/res/ivw/wakeupresource.jet</lgi_param>
+    <URL>http://210.34.58.15:8000/api/raspi/string</URL>
+</config>
+
