@@ -5,5 +5,7 @@
     <tts_params>voice_name = xiaoyan, text_encoding = utf8, sample_rate = 16000, speed = 50, volume = 50, pitch = 50, rdn = 2</tts_params>
     <lgi_param>appid = 5fa8dbbe,engine_start = ivw,ivw_res_path =fo|/home/lllya/IflyClassManage/res/ivw/wakeupresource.jet</lgi_param>
     <URL>http://210.34.58.15:8000/api/raspi/string</URL>
+    <URLHeartBeat>http://210.34.58.15:8000/api/fzuRaspi/heartbeat</URLHeartBeat>
+    <HeartBeatTime>300</HeartBeatTime>
 </config>
 

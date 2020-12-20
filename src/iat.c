@@ -52,9 +52,9 @@ static void on_result(const char *result, char is_last)
             my_tts("好的");//todo:传数据到服务器
             my_tts(g_result);//todo:传数据到服务器
 
-            HttpOut(MyjsonOut(g_result));
+            TestCommandOut(TestCommandJson(g_result));
             printf("rslt=%s\n", g_result);
-            printf("%s", MyjsonOut(g_result));
+            printf("%s", TestCommandJson(g_result));
         }
 	show_result(g_result, is_last);
 	}

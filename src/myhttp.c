@@ -6,10 +6,24 @@
 /* silly test data to POST */
 //static const char data[]="{\"time\": \"2020-12-06T15:47:00\",\"raspild\": \"1\",\"content\": \"Test\"}";
 
+const char* URL[50];
+const char* URLHeartBeat[50];
+
+
 struct WriteThis {
     const char *readptr;
     size_t sizeleft;
 };
+
+void GetURL(const char* string){
+    strcpy(URL,string);
+    printf("URL=%s\n",URL);
+}
+
+void GetURLHeartBeat(const char* string){
+    strcpy(URLHeartBeat,string);
+    printf("URLHeartBeat=%s\n",URLHeartBeat);
+}
 
 static size_t read_callback(void *dest, size_t size, size_t nmemb, void *userp)
 {
@@ -31,102 +45,96 @@ static size_t read_callback(void *dest, size_t size, size_t nmemb, void *userp)
     return 0; /* no more data left to deliver */
 }
 
-int HttpOut(const char* data)
+int TestCommandOut(const char* data)
 {
     CURL *curl;
     CURLcode res;
-
     struct WriteThis wt;
     wt.readptr = data;
     wt.sizeleft = strlen(data);
     curl = curl_easy_init();
-
-
-    /* In windows, this will init the winsock stuff */
     res = curl_global_init(CURL_GLOBAL_DEFAULT);
-    /* Check for errors */
     if(res != CURLE_OK) {
         fprintf(stderr, "curl_global_init() failed: %s\n",
                 curl_easy_strerror(res));
         return 1;
     }
+    curl = curl_easy_init();
+    if(curl) {
+        struct curl_slist *chunk = NULL;
+        chunk = curl_slist_append(chunk, "Content-Type: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+        curl_easy_setopt(curl, CURLOPT_URL, URL);
+        curl_easy_setopt(curl, CURLOPT_POST, 1L);
+        curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
+        curl_easy_setopt(curl, CURLOPT_READDATA, &wt);
+        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)wt.sizeleft);
+
+        res = curl_easy_perform(curl);
+        if(res != CURLE_OK)
+            fprintf(stderr, "curl_easy_perform() failed: %s\n",
+                    curl_easy_strerror(res));
+        curl_easy_cleanup(curl);
+    }
+    curl_global_cleanup();
+    return 0;
+}
+
+/*
+ * This example shows a HTTP PUT operation that sends a fixed buffer with
+ * CURLOPT_POSTFIELDS to the URL given as an argument.
+ */
+
+int HeartBeatOut(const char* data)
+{
+    CURL *curl;
+    CURLcode res;
+
+    /* In windows, this will init the winsock stuff */
+    curl_global_init(CURL_GLOBAL_ALL);
 
     /* get a curl handle */
     curl = curl_easy_init();
     if(curl) {
-        struct curl_slist *chunk = NULL;
+        //struct curl_slist *headers = NULL;
 
-        /* Remove a header curl would otherwise add by itself */
-        chunk = curl_slist_append(chunk, "Content-Type: application/json");
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-        /* Remove a header curl would otherwise add by itself */
-        /* First set the URL that is about to receive our POST. */
-        curl_easy_setopt(curl, CURLOPT_URL, "http://210.34.58.15:8000/api/fzuVoiceRecord?");
+        /* default type with postfields is application/x-www-form-urlencoded,
+           change it if you want */
+        //struct curl_slist *chunk = NULL;
+        //chunk = curl_slist_append(chunk, "Content-Type: application/json");
+        //curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
-        /* Now specify we want to POST data */
-        curl_easy_setopt(curl, CURLOPT_POST, 1L);
+        /* pass on content in request body. When CURLOPT_POSTFIELDSIZE isn't used,
+           curl does strlen to get the size. */
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data);
 
-        /* we want to use our own read function */
-        curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
+        /* override the POST implied by CURLOPT_POSTFIELDS
+         *
+         * Warning: CURLOPT_CUSTOMREQUEST is problematic, especially if you want
+         * to follow redirects. Be aware.
+         */
+        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 
-        /* pointer to pass to our read function */
-        curl_easy_setopt(curl, CURLOPT_READDATA, &wt);
+        /* specify target URL, and note that this URL should include a file
+           name, not only a directory */
+        curl_easy_setopt(curl, CURLOPT_URL, URLHeartBeat);
 
-        /* get verbose debug output please */
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-
-        /*
-          If you use POST to a HTTP 1.1 server, you can send data without knowing
-          the size before starting the POST if you use chunked encoding. You
-          enable this by adding a header like "Transfer-Encoding: chunked" with
-          CURLOPT_HTTPHEADER. With HTTP 1.0 or without chunked transfer, you must
-          specify the size in the request.
-        */
-#ifdef USE_CHUNKED
-        {
-      struct curl_slist *chunk = NULL;
- 
-      chunk = curl_slist_append(chunk, "Transfer-Encoding: chunked");
-      res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-      /* use curl_slist_free_all() after the *perform() call to free this
-         list again */ 
-    }
-#else
-        /* Set the expected POST size. If you want to POST large amounts of data,
-           consider CURLOPT_POSTFIELDSIZE_LARGE */
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)wt.sizeleft);
-#endif
-
-#ifdef DISABLE_EXPECT
-        /*
-      Using POST with HTTP 1.1 implies the use of a "Expect: 100-continue"
-      header.  You can disable this header with CURLOPT_HTTPHEADER as usual.
-      NOTE: if you want chunked transfer too, you need to combine these two
-      since you can only set one list of headers with CURLOPT_HTTPHEADER. */ 
- 
-    /* A less good option would be to enforce HTTP 1.0, but that might also
-       have other implications. */ 
-    {
-      struct curl_slist *chunk = NULL;
- 
-      chunk = curl_slist_append(chunk, "Expect:");
-      res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-      /* use curl_slist_free_all() after the *perform() call to free this
-         list again */ 
-    }
-#endif
-
-        /* Perform the request, res will get the return code */
-        //printf("%s",(char*) curl);
+        /* Now run off and do what you've been told! */
         res = curl_easy_perform(curl);
         /* Check for errors */
+        //printf("res=%d\n",res);
         if(res != CURLE_OK)
             fprintf(stderr, "curl_easy_perform() failed: %s\n",
                     curl_easy_strerror(res));
 
         /* always cleanup */
         curl_easy_cleanup(curl);
+
+        /* free headers */
+        //curl_slist_free_all(chunk);
     }
+
     curl_global_cleanup();
     return 0;
 }

@@ -15,7 +15,8 @@
 #include "libxml/tree.h"
 #include "libxml/parser.h"
 #include "myjson.h"
-
+#include "myhttp.h"
+#include "timer.h"
 //const char *lgi_param ="appid = 5fa8dbbe,engine_start = ivw,ivw_res_path =fo|../res/ivw/wakeupresource.jet";
 char lgi_param[100]="";//todo
 
@@ -56,12 +57,17 @@ int ReadConfig()
     GetIATParams(ParseTarget("iat_params"));
     GetTTSParams(ParseTarget("tts_params"));
     GetLGIParams(ParseTarget("lgi_param"));
+    GetURL(ParseTarget("URL"));
+    GetURLHeartBeat(ParseTarget("URLHeartBeat"));
+    GetHeartBeatTime(ParseTarget("HeartBeatTime"));
 }
 
 int main(int argc, char **argv)
 {
   ReadConfig();
-  char current_absolute_path[MAX_SIZE];
+  HeartBeatTimerInit();
+
+    char current_absolute_path[MAX_SIZE];
   //获取当前程序绝对路径
   int cnt = readlink("/proc/self/exe", current_absolute_path, MAX_SIZE);
   getcwd(current_absolute_path, MAX_SIZE);

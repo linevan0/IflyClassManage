@@ -43,7 +43,14 @@ add_executable(iflytek_awaken_asr
         src/cJSON.c
         src/myxml.c
         src/myxml.c
-        src/myjson.c src/myurl.c include/myjson.h src/myhttp.c include/myhttp.h)
+        src/myjson.c
+        src/myurl.c
+        include/myjson.h
+        src/myhttp.c
+        include/myhttp.h
+        src/timer.c
+        src/timer.c
+        include/timer.h)
 
 
 target_link_libraries(iflytek_awaken_asr msc -lpthread -lm -lasound -lxml2 curl)

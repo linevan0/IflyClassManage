@@ -1,9 +1,8 @@
-POST http://210.34.58.15:8000/api/fzuVoiceRecord
+PUT http://210.34.58.15:8000/api/heartbeat
 Content-Type: application/json
 
-{  "time": "2020-12-06T15:47:00",
-  "raspild": "1",
-  "content": "Test"
+{  "heartbeatTime": "2020-11-29T19:17:30+0800",
+  "raspild": "1"
 }
 
 ###

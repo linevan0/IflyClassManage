@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/lllya/IflyClassManage/src/myxml.c" "/home/lllya/IflyClassManage/CMakeFiles/iflytek_awaken_asr.dir/src/myxml.c.o"
   "/home/lllya/IflyClassManage/src/play_audio.c" "/home/lllya/IflyClassManage/CMakeFiles/iflytek_awaken_asr.dir/src/play_audio.c.o"
   "/home/lllya/IflyClassManage/src/speech_recognizer.c" "/home/lllya/IflyClassManage/CMakeFiles/iflytek_awaken_asr.dir/src/speech_recognizer.c.o"
+  "/home/lllya/IflyClassManage/src/timer.c" "/home/lllya/IflyClassManage/CMakeFiles/iflytek_awaken_asr.dir/src/timer.c.o"
   "/home/lllya/IflyClassManage/src/tts.c" "/home/lllya/IflyClassManage/CMakeFiles/iflytek_awaken_asr.dir/src/tts.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
