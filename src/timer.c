@@ -79,7 +79,7 @@ void DoHeartBeat()
 void HeartBeatTimerInit()
 {
     signal(SIGALRM, tick);
-    alarm(1); // 1s的周期心跳s
+    alarm(1); // 1s的周期心跳
     add_timer(1,DoHeartBeat);//上电一秒发送第一次心跳包
 }
 

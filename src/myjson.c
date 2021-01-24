@@ -31,17 +31,20 @@ const char* TestCommandJson(const char* src)
 
 
     cJSON* Result = cJSON_CreateObject();
+    cJSON* mac_id = cJSON_CreateObject();
     cJSON_AddStringToObject(Result, "time", gettime(tblock));
-    cJSON_AddStringToObject(Result, "raspiId", raspiId);
+    cJSON_AddItemToObject(Result, "fzuRaspi",mac_id);
+    cJSON_AddStringToObject(mac_id, "raspiId", raspiId);
     cJSON_AddStringToObject(Result, "content", src);
 
     /* 打印JSON对象(整条链表)的所有数据 */
     char* ResultOut = NULL;
     ResultOut = cJSON_Print(Result);
-    //printf("%s\n", ResultOut);
+    printf("%s\n", ResultOut);
 
     return ResultOut;
 }
+
 
 const char* HeartBeatJson()
 {

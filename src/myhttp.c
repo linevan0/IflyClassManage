@@ -101,9 +101,9 @@ int HeartBeatOut(const char* data)
 
         /* default type with postfields is application/x-www-form-urlencoded,
            change it if you want */
-        //struct curl_slist *chunk = NULL;
-        //chunk = curl_slist_append(chunk, "Content-Type: application/json");
-        //curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+        struct curl_slist *chunk = NULL;
+        chunk = curl_slist_append(chunk, "Content-Type: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
         /* pass on content in request body. When CURLOPT_POSTFIELDSIZE isn't used,
            curl does strlen to get the size. */
@@ -132,7 +132,7 @@ int HeartBeatOut(const char* data)
         curl_easy_cleanup(curl);
 
         /* free headers */
-        //curl_slist_free_all(chunk);
+        curl_slist_free_all(chunk);
     }
 
     curl_global_cleanup();
